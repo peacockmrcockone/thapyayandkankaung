@@ -75,18 +75,6 @@
             </div>
           </div>
 
-          <!-- 🎥 Random Video Section -->
-          <div class="video-container">
-            <video 
-              :src="currentVideo" 
-              autoplay 
-              muted 
-              playsinline 
-              @ended="changeVideo"
-              class="random-video"
-            ></video>
-          </div>
-
           <!-- ✅ NEW: "စက်" & "တန်ဖိုး" alignment left/right -->
           <div class="live-info">
             <div class="info-item">
@@ -152,33 +140,6 @@ export default {
     const randomKey = ref("");
     // ✅ reactive variable
     const randomSeqKey = ref("");
-
-
-    const videoList = [
-      "/videos/video1.mp4",
-      "/videos/video2.mp4",
-      "/videos/video3.mp4",
-      "/videos/video4.mp4",
-      "/videos/video5.mp4",
-      "/videos/video6.mp4",
-      "/videos/video7.mp4",
-      "/videos/video8.mp4",
-      "/videos/video9.mp4",
-      "/videos/video10.mp4",
-      "/videos/video11.mp4",
-      "/videos/video12.mp4",
-      "/videos/video13.mp4",
-      "/videos/video14.mp4",
-      "/videos/video15.mp4",
-      "/videos/video16.mp4",
-    ];
-
-    const currentVideo = ref(videoList[0]);
-
-    const changeVideo = () => {
-      const randomIndex = Math.floor(Math.random() * videoList.length);
-      currentVideo.value = videoList[randomIndex];
-    };
 
     // ✅ Random key generator (တူတဲ့ digit မပါအောင် ၂ လုံး random ထုတ်)
     function generateUniqueKey() {
@@ -413,8 +374,6 @@ export default {
       // Fetch data from backend API
       fetchData();
 
-      setInterval(changeVideo, 15000); // 15 seconds
-
 
       // Intervals
       setInterval(updateDateTime, 1000);
@@ -457,8 +416,7 @@ export default {
       loading,
 
       // ⬇⬇⬇ ထည့်ဖို့လိုတာ
-      currentVideo,
-      changeVideo,
+
       randomKey,
       randomSeqKey,
       currentTwoD,
@@ -699,13 +657,13 @@ html, body, .app {
 }
 
 .phone .card .info-item h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #fff;
   margin: 0 0 4px 0;
 }
 
 .phone .card .info-item p {
-  font-size: 1.4rem;
+  font-size: 3rem;
   font-weight: bold;
   color: yellow;
   margin: 0;
@@ -730,12 +688,11 @@ html, body, .app {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
 }
 
 /* ခေါင်းစဉ် */
 .live-info .info-label {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: bold;
   color: #000;
   margin: 0;
@@ -743,7 +700,7 @@ html, body, .app {
 
 /* တန်ဖိုး */
 .live-info .info-value {
-  font-size: 3.2rem;
+  font-size: 4rem;
   font-weight: bold;
   color: #c00000;
   margin: 0;
@@ -881,23 +838,5 @@ html, body, .app {
 /* Color variants remain the same */
 .subscribe button.red { background: red; }
 .subscribe button.green { background: green; }
-
-.video-container {
-  width: 300px;
-  height: 200px;
-  border: 4px solid #000;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  margin-top: 20px;
-  animation: floatBounce 10s ease-in-out infinite;
-}
-
-.random-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 15px;
-}
 
 </style>
